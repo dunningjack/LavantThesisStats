@@ -43,18 +43,30 @@ for (var in testVars) {
 }
 #plot histogram of each variable across all sites
 
+
 for (var in testVars) {
-  # Check if the column is numeric
+  print(
+    ggplot(data, aes(x=Site, y=!!sym(var), fill=Site)) + geom_boxplot() + ggtitle(var) + xlab("Site") + ylab(var)
+  )
+}
+#plot boxplot of each variable across all sites
+
+
+
+screenedVars <- data.frame(Variable=character(), Normality=character(), Homogeneity=character(), stringsAsFactors = FALSE)
+
+for (var in testVars) {
   if (is.numeric(data[[var]])) {
-    # Perform Shapiro-Wilk test
     test_result <- shapiro.test(data[[var]])
 
     if (test_result$p.value <0.05) {
+      screenedVars <- rbind(screenedVars, data.frame(Variable=var, Normality="FALSE", Homogeneity=NA))
       cat("\n Shapiro-Wilk Test for Normality for ", var," \n")
       print(test_result)
       print("Reject the null hypothesis, data is not normally distributed")
       print("============================================================================")
     } else {
+      screenedVars <- rbind(screenedVars, data.frame(Variable=var, Normality="TRUE", Homogeneity=NA))
       cat("\n Shapiro-Wilk Test for Normality for ", var,"\n")
       print(test_result)
       print("Fail to reject the null hypothesis, data is normally distributed")
@@ -62,6 +74,8 @@ for (var in testVars) {
       }
     }
   }
+#test normality, generate table w/ var name and result
+
 
 
 for (var in testVars){
@@ -74,6 +88,7 @@ for (var in testVars){
 library("car")
 results <- list()
 levene_pf <- list()
+
 for (var in testVars) {
   if (is.numeric(data[[var]])) {
     testFormula <- as.formula(paste(var, "~ Site"))
@@ -92,12 +107,20 @@ for (var in names(results)){
   print(results[[var]])
   if (levene_pf[[var]] < 0.05) {
     print("Reject the null hypothesis, variances are not homogeneous")
+    screenedVars[screenedVars$Variable == var, "Homogeneity"] <- "FALSE"
   } else {
     print("Fail to reject the null hypothesis, variances are homogeneous")
+    screenedVars[screenedVars$Variable == var, "Homogeneity"] <- "TRUE"
   }
   print("============================================================================")
 }
-#print each result for levene
+#print each result for levene, adding to screenedVars w/ result
+
+
+cat("\n Normality and Homogeneity of Variance Results")
+print(screenedVars)
+print("============================================================================")
 
 testVars <- c("Distance.From.Outflow", "ASPT", "Temperature", "pH", "DO", "TDS", "Nitrate", "Phosphate", "Faecal.Coliforms", "Escherichia.coli", "Enterococci") #, "Shannon", "Simpson"
 #include distance as not needed to test for normality etc
+
