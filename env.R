@@ -1,0 +1,15 @@
+install.packages("tidyverse")
+install.packages("vegan")
+install.packages("ggplot2")
+install.packages("ggfortify")
+install.packages("devtools")
+devtools::install_github("gavinsimpson/ggvegan")
+install.packages("car")
+
+
+library("tidyverse")
+library("vegan")
+library("ggplot2")
+library("ggfortify")
+library("ggvegan")
+library("car")

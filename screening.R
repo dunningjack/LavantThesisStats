@@ -1,16 +1,4 @@
-install.packages("tidyverse")
-install.packages("vegan")
-install.packages("ggplot2")
-install.packages("ggfortify")
-install.packages("devtools")
-devtools::install_github("gavinsimpson/ggvegan")
-
-library("tidyverse")
-library("vegan")
-library("ggplot2")
-library("ggfortify")
-library("ggvegan")
-
+source(env.R)
 
 data<-read.csv("Lavant Data .csv", header = TRUE)
 #read in csv file, assign to data
