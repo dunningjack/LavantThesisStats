@@ -1,4 +1,4 @@
-source(env.R)
+source("env.R")
 
 data<-read.csv("Lavant Data .csv", header = TRUE)
 #read in csv file, assign to data
