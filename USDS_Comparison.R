@@ -4,3 +4,5 @@
 
 data <- data %>%
   mutate(SiteGroup = if_else(str_detect(Site, "^DS"), "DS", "US"))
+#mark each site as up or downstream
+

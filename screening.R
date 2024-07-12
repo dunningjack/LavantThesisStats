@@ -15,9 +15,7 @@ for (var in testVars) {
 }
 #plot boxplot of each variable across all sites
 
-
-
-screenedVars <- data.frame(Variable=character(), Normality=character(), Homogeneity=character(), stringsAsFactors = FALSE)
+screenedVars <- data.frame(Variable=character(), Normality=character(), Skew=character(), Homogeneity=character(), stringsAsFactors = FALSE)
 
 for (var in testVars) {
   if (is.numeric(data[[var]])) {
@@ -47,6 +45,24 @@ for (var in testVars){
     qqline(data[[var]])
 }
 #qq plots w/ line
+
+for (var in testVars) {
+  cat("\nSummary of", var, ":\n")
+  print(summary(data[[var]]))
+  skew_value <- skewness(data[[var]], na.rm = TRUE) # Calculate skewness, removing NA values
+  cat("Skewness of", var, ":", skew_value, "\n\n")
+  if (skew_value < -0.5){
+    cat("The data is negatively skewed\n")
+    screenedVars[screenedVars$Variable == var, "Skew"] <- "Negative"
+  } else if (skew_value > 0.5){
+    cat("The data is positively skewed\n")
+    screenedVars[screenedVars$Variable == var, "Skew"] <- "Positive"
+  } else {
+    cat("The data is almost symmetrical\n")
+    screenedVars[screenedVars$Variable == var, "Skew"] <- "Symmetrical"
+
+  }
+}
 
 
 library("car")
@@ -81,7 +97,7 @@ for (var in names(results)){
 #print each result for levene, adding to screenedVars w/ result
 
 
-cat("\n Normality and Homogeneity of Variance Results")
+cat("\n Normality and Homogeneity of Variance Results \n")
 print(screenedVars)
 print("============================================================================")
 

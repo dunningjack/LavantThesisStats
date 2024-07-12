@@ -5,6 +5,8 @@ install.packages("ggfortify")
 install.packages("devtools")
 devtools::install_github("gavinsimpson/ggvegan")
 install.packages("car")
+install.packages("e1071")
+install.packages("dplyr")
 
 
 library("tidyverse")
@@ -13,6 +15,8 @@ library("ggplot2")
 library("ggfortify")
 library("ggvegan")
 library("car")
+library("e1071")
+library("dplyr")
 
 
 data<-read.csv("Lavant Data .csv", header = TRUE)
