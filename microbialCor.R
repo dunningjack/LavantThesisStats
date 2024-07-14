@@ -50,4 +50,5 @@ if (cor_res$p.value < 0.05) {
 }
 #test correlation between phosphate and enterococci
 
+cat("\nSummary of Pearson Correlation Tests\n")
 print(microbialPearson)
