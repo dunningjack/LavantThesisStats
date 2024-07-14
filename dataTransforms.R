@@ -21,7 +21,7 @@ data_transformed <- data %>%
     Enterococci_transformed = log(Enterococci + 1)
   )
 
-transformedVars <- c("ASPT_transformed", "pH_transformed", "Temperature_transformed", "DO_transformed", "TDS_transformed", "Phosphate_transformed", "Faecal_Coliforms_transformed", "Escherichia_coli_transformed", "Enterococci_transformed")
+transformedVars <- c("ASPT_transformed", "pH_transformed", "Temperature_transformed", "DO_transformed", "TDS_transformed", "Nitrate_transformed", "Phosphate_transformed", "Faecal_Coliforms_transformed", "Escherichia_coli_transformed", "Enterococci_transformed")
 
 for (var in transformedVars){
   data_transformed[[var]] <- as.numeric(data_transformed[[var]])

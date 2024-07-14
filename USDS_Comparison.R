@@ -1,15 +1,11 @@
-#do param vary USDS
-#index scores diff at each site / USDS
-#nutrient US v DS
-
-data <- data %>%
+data_transformed <- data_transformed %>%
   mutate(SiteGroup = if_else(str_detect(Site, "^DS"), "DS", "US"))
 #mark each site as up or downstream
 
 USDS_Differences <- data.frame(Variable=character(), Difference=character(), t.value=character(), p.value=numeric())
 
-for (var in testVars){
-  ttest_result <- t.test(data[[var]] ~ data$SiteGroup, var.equal=TRUE)
+for (var in transformedVars){
+  ttest_result <- t.test(data_transformed[[var]] ~ data_transformed$SiteGroup, var.equal=TRUE)
   #independent samples, variances homogeneous as tested previously
 
   if (ttest_result$p.value < 0.05) {
