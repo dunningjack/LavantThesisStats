@@ -9,7 +9,7 @@ manova_res <- manova(cbind(Temperature_transformed, DO_transformed, TDS_transfor
 anovaTables <- list()
 tukeyResults <- list()
 
-testVars <- c("Temperature_transformed", "DO_transformed", "TDS_transformed")
+testVars <- c("pH_transformed", "Temperature_transformed", "DO_transformed", "TDS_transformed")
 for (var in testVars) {
   # Perform ANOVA for each variable separately
   formula <- as.formula(paste(var, "~ Site"))
