@@ -22,4 +22,6 @@ for (var in testVars) {
 }
 
 # Print Tukey's HSD results
+cat("\n \n")
+print("============================================================================")
 print(tukeyResults)
