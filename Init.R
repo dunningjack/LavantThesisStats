@@ -33,7 +33,7 @@ data$Site<-factor(data$Site, levels=c("US1", "US2", "DS1", "DS2"), ordered=TRUE)
 #convert Site column (character) to factor, set levels of factor
 groups<-c("US1", "US2", "DS1", "DS2")
 
-testVars <- c("ASPT", "Temperature", "pH", "DO", "TDS", "Nitrate", "Phosphate", "Faecal.Coliforms", "Escherichia.coli", "Enterococci") #, "Shannon", "Simpson"
+testVars <- c("BMWP", "ASPT", "Shannon", "Simpson", "Temperature", "pH", "DO", "TDS", "Nitrate", "Phosphate", "Faecal.Coliforms", "Escherichia.coli", "Enterococci") #, "Shannon", "Simpson"
 for (var in testVars){
   data[[var]] <- as.numeric(data[[var]])
 }

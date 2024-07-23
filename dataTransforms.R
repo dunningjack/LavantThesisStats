@@ -9,7 +9,9 @@ reflect_log_transform <- function(x) {
 # Apply transformations
 data_transformed <- data %>%
   mutate(
-    ASPT_transformed = reflect_log_transform(ASPT),
+    ASPT_transformed = ASPT,
+    Shannon_transformed = reflect_log_transform(Shannon),
+    Simpson_transformed = reflect_log_transform(Simpson),
     pH_transformed = reflect_log_transform(pH),
     Temperature_transformed = Temperature,
     DO_transformed = DO,
@@ -21,7 +23,7 @@ data_transformed <- data %>%
     Enterococci_transformed = log(Enterococci + 1)
   )
 
-transformedVars <- c("ASPT_transformed", "pH_transformed", "Temperature_transformed", "DO_transformed", "TDS_transformed", "Nitrate_transformed", "Phosphate_transformed", "Faecal_Coliforms_transformed", "Escherichia_coli_transformed", "Enterococci_transformed")
+transformedVars <- c("ASPT_transformed", "Shannon_transformed", "Simpson_transformed", "pH_transformed", "Temperature_transformed", "DO_transformed", "TDS_transformed", "Nitrate_transformed", "Phosphate_transformed", "Faecal_Coliforms_transformed", "Escherichia_coli_transformed", "Enterococci_transformed")
 
 for (var in transformedVars){
   data_transformed[[var]] <- as.numeric(data_transformed[[var]])
