@@ -26,3 +26,11 @@ Microbial data is used for some analyses, with reasoning and references provided
 
 ## Applications of findings
 The study aims to begin quantifying the impact of treatment plants on chalk streams, providing initial data from which further testing and experiments can be based.
+
+## How to Use
+1. Ensure latest version of R is installed onto target device
+2. Using suitable environment, clone the repository from VCS to the local machine. (NOTE: VSCode/DataSpell recommended)
+3. Open "CompleteAnalysis.R" and execute the script
+4. Allow up to 2 minutes for analysis to complete. Outputs will appear in the console as a series of test results, with histograms, box plots and QQ plots being plotted in the development environment.
+
+In the event of issue, please raise as such under the relevant repo tab, reporting the exact error message received and details about the operating environment (OS/Version/R version/IDE version)
