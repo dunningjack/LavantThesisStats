@@ -16,3 +16,7 @@ for (var in transformedVars){
 }
 cat("\nSummary of differences between US and DS\n")
 print(USDS_Differences)
+
+
+anova_res <- aov(surveillance_data$outcome ~ surveillance_data$agegroup)
+summary(anovares)
